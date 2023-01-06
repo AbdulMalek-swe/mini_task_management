@@ -5,11 +5,11 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 const Home = () => {
     const [tasks, setTasks] = useState([]);
-    const { user } = useContext(AuthContext)
+    const { searchText } = useContext(AuthContext)
     var formdata = new FormData();
     const config = {
         headers: {
-            "AuthToken": "UrM4YHgb1FcqEf1tuKwmAMMX5MxFZ12a"
+            "AuthToken": "UrM4YHgb1FcqEf1tuKwmAMMX5MxFZ12a" 
         }
     };
     // get all task list 
@@ -18,14 +18,14 @@ const Home = () => {
             .then(data => {
                 // setTasks(data?.data?.tasks)
                 let filterTask;
-                if(user){
+                if(searchText){
                     filterTask = data.data.tasks.filter(item => {
                         if(item.assigned_name==false || item.assigned_name==true){
                             return null;
                         }
                         else{
-                           let neededUser = item.assigned_name.toLowerCase().includes(user.toLowerCase());
-                            return neededUser;
+                           let neededsearchText = item.assigned_name.toLowerCase().includes(searchText.toLowerCase());
+                            return neededsearchText;
                         }
                     })
                 }
@@ -37,7 +37,7 @@ const Home = () => {
                 }
 
             })
-    }, [user]);
+    }, [searchText]);
     // delete the selected task 
     const handleDelete = (id) => {
         console.log(id)

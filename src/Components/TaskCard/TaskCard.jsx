@@ -6,7 +6,7 @@ const TaskCard = ({task,handleDelete}) => {
     const { assigned_name, message, id , priority} = task;
     return (
         <>
-        {/*<!-- Component: E-commerce card --> */}
+        {/*<!-- Component: card --> */}
         <div className="overflow-hidden w-auto rounded bg-white text-slate-500 shadow-md shadow-slate-200">
             {/*  <!-- Body--> */}
             <div className="p-6">

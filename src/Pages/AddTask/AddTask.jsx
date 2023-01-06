@@ -36,7 +36,7 @@ const AddTask = () => {
             <h1 className="text-center my-6 font-semibold text-4xl text-gray-900">Add Your Task</h1>
             <div className="mx-auto max-w-2xl mt-8">
                 <form action="" onSubmit={handleSubmit}>
-                    {/* <!-- Component: Rounded large basic input --> */}
+                    {/* <!-- Component:  add task input field --> */}
                     
                     <div className="h-auto">
                         <div className="relative my-6">

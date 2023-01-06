@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
  
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-    const [user, setUserSearch] = useState("");
+    const [searchText, setSearchText] = useState("");
     const authInfo = {
-        setUserSearch,
-        user
+        setSearchText,
+        searchText
     }
     return (
         <AuthContext.Provider value={authInfo}>

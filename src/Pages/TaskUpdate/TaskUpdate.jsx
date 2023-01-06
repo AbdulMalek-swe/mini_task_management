@@ -15,13 +15,14 @@ const TaskUpdate = () => {
         newData[field] = value;
         setTaskUpdate(newData)
     }
+           
+    formdata.append("message",taskUpdate.message);
+    formdata.append("due_date", taskUpdate.date);
+    formdata.append("priority", taskUpdate.priority);
+    formdata.append("assigned_to", taskUpdate.assign);
+    formdata.append("taskid", taskId);
+//    task updated code is here 
     const handleSubmit = (e) => {
-       
-        formdata.append("message",taskUpdate.message);
-        formdata.append("due_date", taskUpdate.date);
-        formdata.append("priority", taskUpdate.priority);
-        formdata.append("assigned_to", taskUpdate.assign);
-        formdata.append("taskid", taskId);
 
         var requestOptions = {
             method: 'POST',
