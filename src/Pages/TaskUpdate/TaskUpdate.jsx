@@ -33,7 +33,9 @@ const TaskUpdate = () => {
 
         fetch("https://devza.com/tests/tasks/update", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                window.alert("update successfully")
+            })
             .catch(error => console.log('error', error));
             e.preventDefault()
     }
