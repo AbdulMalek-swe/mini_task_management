@@ -27,7 +27,9 @@ const AddTask = () => {
         }; 
         fetch("https://devza.com/tests/tasks/create", requestOptions)
           .then(response => response.text())
-          .then(result => console.log(result))
+          .then(result => {
+           window.alert("succefully added task")
+        })
           .catch(error => console.log('error', error));
           e.preventDefault()
     }
@@ -36,8 +38,7 @@ const AddTask = () => {
             <h1 className="text-center my-6 font-semibold text-4xl text-gray-900">Add Your Task</h1>
             <div className="mx-auto max-w-2xl mt-8">
                 <form action="" onSubmit={handleSubmit}>
-                    {/* <!-- Component:  add task input field --> */}
-                    
+                    {/* <!-- Component:  add task input field --> */}                
                     <div className="h-auto">
                         <div className="relative my-6">
                             <input id="id-l01" type="text" required name="message" placeholder="task message" onChange={(e)=>taskAddedData(e)} className="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-slate-200 focus:border-emerald-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
