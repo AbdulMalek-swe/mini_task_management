@@ -16,8 +16,19 @@ const Home = () => {
     useEffect(() => {
         axios.get("https://devza.com/tests/tasks/list", config)
             .then(data => {
-                console.log(data)
-                const filterTask = data.data.tasks.filter((task) => task.assigned_name.toLowerCase().includes(user.toLowerCase()))
+                // setTasks(data?.data?.tasks)
+                let filterTask;
+                if(user){
+                    filterTask = data.data.tasks.filter(item => {
+                        if(item.assigned_name==false || item.assigned_name==true){
+                            return null;
+                        }
+                        else{
+                           let neededUser = item.assigned_name.toLowerCase().includes(user.toLowerCase());
+                            return neededUser;
+                        }
+                    })
+                }
                 if (filterTask) {
                     setTasks(filterTask)
                 }
@@ -41,7 +52,7 @@ const Home = () => {
                 body: formdata,
                 redirect: 'follow'
             };
-fetch("https://devza.com/tests/tasks/delete", requestOptions)
+            fetch("https://devza.com/tests/tasks/delete", requestOptions)
                 .then(response => response.text())
                 .then(result => {
                     const filterTask = tasks.filter((task => task.id !== id))
@@ -60,8 +71,8 @@ fetch("https://devza.com/tests/tasks/delete", requestOptions)
         <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {
-                    tasks?.sort((a,b)=>b.due_date-a.due_date).sort((a,b)=>b.priority
-                    -a.priority 
+                    tasks?.sort((a, b) => b.due_date - a.due_date).sort((a, b) => b.priority
+                        - a.priority
                     ).map(task => <TaskCard task={task} key={task.id} handleDelete={handleDelete} />)
                 }
             </div>
