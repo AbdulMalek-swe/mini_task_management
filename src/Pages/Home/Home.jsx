@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
+import update from 'immutability-helper'
 import TaskCard from '../../Components/TaskCard/TaskCard';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
@@ -66,6 +67,17 @@ const Home = () => {
         }
     }
 
+    // drug and drom moving code using here 
+    const moveCard = useCallback((dragIndex, hoverIndex) => {
+        setTasks((prevCards) =>
+          update(prevCards, {
+            $splice: [
+              [dragIndex, 1],
+              [hoverIndex, 0, prevCards[dragIndex]],
+            ],
+          }),
+        )
+      }, [])
 
     return (
         <div className="container mx-auto">
@@ -73,7 +85,7 @@ const Home = () => {
                 {
                     tasks?.sort((a, b) => b.due_date - a.due_date).sort((a, b) => b.priority
                         - a.priority
-                    ).map(task => <TaskCard task={task} key={task.id} handleDelete={handleDelete} />)
+                    ).map((task,index )=> <TaskCard task={task} key={task.id} handleDelete={handleDelete}  moveCard={moveCard} index={index}/>)
                 }
             </div>
         </div>
